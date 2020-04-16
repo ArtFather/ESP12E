@@ -1,9 +1,21 @@
 #include <Arduino.h>
+#include "BMP085.cpp"
 
-void setup() {
-  // put your setup code here, to run once:
+void setup() 
+{
+ Serial.begin(115200);
+ Serial.println(" ");
+
+ Wire.begin(BMP085_SCL, BMP085_SDA);
+ BMP085_get_cal_data();
+ delay(50);
+ Serial.print("Raw temp->");
+ Serial.print(BMP085_get_ut(), DEC);
+ Serial.print(" Raw pressure->");
+ Serial.println(BMP085_get_up(), DEC);
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-}
+ void loop()
+ {
+
+ }
